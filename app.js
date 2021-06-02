@@ -24,6 +24,7 @@ app.get('/user', (req, res) => {
 // post 
 app.post('/user', (req, res) => {
     //console.log("req.body", req.body)
+    // destructuri js??
     const { nombre, apellido, municipio} = req.body;
     if(nombre && apellido && municipio) {
 
