@@ -24,7 +24,6 @@ app.get('/user', (req, res) => {
 // post 
 app.post('/user', (req, res) => {
     //console.log("req.body", req.body)
-    // destructuri js??
     const { nombre, apellido, municipio} = req.body;
     if(nombre && apellido && municipio) {
 
@@ -39,6 +38,28 @@ app.post('/user', (req, res) => {
     }
 })
 
+
+//patch
+app.patch('/user/:idUser', (req, res) => {
+    // params son las variables que se envian por la ruta va despues de los :
+    const {idUser} = req.params;
+    const usuario = req.body;
+
+    
+        //recorremos el array
+        const userData = usuarios.map(function(data) {
+
+            if(data.id == idUser) {
+                data.nombre = usuario.nombre;  
+                data.apellido = usuario.apellido;
+               return data;     
+            }
+            return data;
+        } );  
+        // llamamos el nuevo array con los cambios
+        res.json(userData)  
+    
+} )
 
 
 // configurar servidor
