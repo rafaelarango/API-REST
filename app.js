@@ -15,13 +15,13 @@ app.get('/', (req, res) => {
     res.send("Hello");
 })
 
-// get ruta user
+// Metodo Get
 app.get('/user', (req, res) => {
     res.json(usuarios)
 })
 
 
-// post 
+// Metodo Post 
 app.post('/user', (req, res) => {
     //console.log("req.body", req.body)
     const { nombre, apellido, municipio} = req.body;
@@ -39,7 +39,7 @@ app.post('/user', (req, res) => {
 })
 
 
-//patch
+//Metodo Patch
 app.patch('/user/:idUser', (req, res) => {
     // params son las variables que se envian por la ruta va despues de los :
     const {idUser} = req.params;
@@ -60,6 +60,23 @@ app.patch('/user/:idUser', (req, res) => {
         res.json(userData)  
     
 } )
+
+
+//Metodo Delete
+app.delete('/user/idUser', (req, res) => {
+
+   const {idUser} = req.params;
+
+   const userData = usuarios.map(function(data) {
+
+    if(data.id == idUser) {
+        usuarios.splice(idUser, 1)
+    }
+   })
+
+
+
+})
 
 
 // configurar servidor
