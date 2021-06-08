@@ -63,20 +63,26 @@ app.patch('/user/:idUser', (req, res) => {
 
 
 //Metodo Delete
-app.delete('/user/idUser', (req, res) => {
+app.delete('/user/:idUser', (req, res) => {
+//    const {idUser} = req.params;
+//    const userData = usuarios.map(function(data) {
 
-   const {idUser} = req.params;
+//     if(data.id == idUser) {
+        
+//         return usuarios.splice(idUser, 0);
+       
+//     }
+//     return data;
+//    })
+//    res.json(userData);
 
-   const userData = usuarios.map(function(data) {
+const {idUser} = req.params;
+const nuevoUsuarios = usuarios.filter((elemento) => elemento.id !== Number(idUser));
 
-    if(data.id == idUser) {
-        usuarios.splice(idUser, 1)
-    }
-   })
+res.status(200).json(nuevoUsuarios);
 
+});
 
-
-})
 
 
 // configurar servidor
